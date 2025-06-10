@@ -121,7 +121,7 @@ class NewWorkoutState extends State<NewWorkout> {
               SizedBox(width: 5),
               ElevatedButton(
                 onPressed: saveNewWorkout,
-                child: Text('Save Expense'),
+                child: Text('Save Workout'),
               ),
             ],
           ),
