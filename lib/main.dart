@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(MaterialApp(
-    // home: FirstPage()
-    home: Home(),
+    home: FirstPage(),
     debugShowCheckedModeBanner: false,
   ));
 }
