@@ -1,23 +1,81 @@
 import 'package:fitnesstrackerapp/Models/Workout.dart';
+import 'package:fitnesstrackerapp/Screens/BMIScreen.dart';
+import 'package:fitnesstrackerapp/Widgets/NewWorkout.dart';
 import 'package:fitnesstrackerapp/Widgets/WorkoutItem.dart';
+import 'package:fitnesstrackerapp/Widgets/WorkoutList.dart';
 import 'package:flutter/material.dart';
 
 
-class Home extends StatelessWidget{
+class Home extends StatefulWidget{
 
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   List<Workout> availableWorkouts = [
-  Workout(id: 'c1', title: 'Italian', color: Colors.purple),
-  Workout(id: 'c2', title: 'Quick & Easy', color: Colors.red),
-  Workout(id: 'c3', title: 'Hamburgers', color: Colors.orange),
+  Workout(
+      title: 'Flutterxz vxfxdgdfgzdfgzsdfzsdgzdgzdf',
+      duration: 5.25,
+      date: DateTime.now(),
+      category: Category.Cardio,
+    ),
+  Workout(
+      title: 'Flutter',
+      duration: 5.25,
+      date: DateTime.now(),
+      category: Category.Cardio,
+    ),
+  
   ];
+
+  void openExpenseAdderOverlay() {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => NewWorkout(onAddWorkout: addWorkout),
+    );
+  }
+
+  addWorkout(Workout workout) {
+    setState(() {
+      availableWorkouts.add(workout);
+    });
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text("Expense Added"), duration: Duration(seconds: 2)),
+    );
+  }
+
+  removeWorkout(Workout workout) {
+    setState(() {
+      availableWorkouts.remove(workout);
+    });
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text("Workout Deleted"),
+      duration: Duration(seconds: 2),
+      action: SnackBarAction(
+        label: "undo", onPressed: (){   
+          setState(() {
+      availableWorkouts.add(workout);
+    });
+        }
+        ))
+    );
+  }
 
   @override
    Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("All Workouts",
-          style: TextStyle(color: Colors.white),
-        ),
+        title: Text('All workouts',style: TextStyle(color: Colors.white),),
+        actions: [
+          // Title(color: Colors.white, child: Text("Add")),
+          IconButton(
+            onPressed: openExpenseAdderOverlay,
+            tooltip: "Add new",
+            icon: Icon(Icons.add,color: Colors.white,size: 35,)),
+        ],
         backgroundColor: Colors.blueGrey,
       ),
       backgroundColor: const Color.fromARGB(255, 143, 152, 167),
@@ -31,14 +89,20 @@ class Home extends StatelessWidget{
             mainAxisSpacing: 20,
           ),
           children: [
-            for(Workout category in availableWorkouts)
-              WorkoutItem(workout: category),
+            for(Workout workout in availableWorkouts)
+              Dismissible(
+                  key: ValueKey(workout),
+                  child: WorkoutItem(workout:workout),
+                  onDismissed: (direction){
+                    removeWorkout(workout);
+                  },
+                )
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
   onPressed: () {
-    // Your logic here
+    Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>BMIScreen()));
   },
   backgroundColor: Colors.teal,
   foregroundColor: Colors.white, // text/icon color
