@@ -2,7 +2,6 @@ import 'package:fitnesstrackerapp/Models/Workout.dart';
 import 'package:fitnesstrackerapp/Screens/BMIScreen.dart';
 import 'package:fitnesstrackerapp/Widgets/NewWorkout.dart';
 import 'package:fitnesstrackerapp/Widgets/WorkoutItem.dart';
-import 'package:fitnesstrackerapp/Widgets/WorkoutList.dart';
 import 'package:flutter/material.dart';
 
 
@@ -15,14 +14,14 @@ class Home extends StatefulWidget{
 class _HomeState extends State<Home> {
   List<Workout> availableWorkouts = [
   Workout(
-      title: 'Flutterxz vxfxdgdfgzdfgzsdfzsdgzdgzdf',
-      duration: 5.25,
+      title: 'Pushups',
+      duration: 20,
       date: DateTime.now(),
-      category: Category.Cardio,
+      category: Category.Weightlifting,
     ),
   Workout(
-      title: 'Flutter',
-      duration: 5.25,
+      title: 'Running',
+      duration: 30,
       date: DateTime.now(),
       category: Category.Cardio,
     ),
@@ -70,7 +69,6 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: Text('All workouts',style: TextStyle(color: Colors.white),),
         actions: [
-          // Title(color: Colors.white, child: Text("Add")),
           IconButton(
             onPressed: openExpenseAdderOverlay,
             tooltip: "Add new",
