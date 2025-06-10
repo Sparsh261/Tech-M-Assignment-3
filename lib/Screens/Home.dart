@@ -103,11 +103,11 @@ class _HomeState extends State<Home> {
     Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>BMIScreen()));
   },
   backgroundColor: Colors.teal,
-  foregroundColor: Colors.white, // text/icon color
+  foregroundColor: Colors.white, 
   shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(12), // optional shape
+    borderRadius: BorderRadius.circular(12), 
   ),
-  elevation: 6, // optional shadow depth
+  elevation: 6, 
   child: Text(
     "Check BMI",
     style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
