@@ -6,13 +6,13 @@ class FirstPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Title(color: Colors.yellow, child: Text("Fitness Tracker App")),
-      // ),
+      appBar: AppBar(
+        // title: Title(color: Colors.black, child: Text("")),
+      ),
       body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("fitness.jpeg"),
+              image: AssetImage("assets/fitness.jpeg"),
               fit: BoxFit.cover,
             ),
           ),
